@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.25.1)
 
-project(helloworld VERSION 0.0.1)
-message("CMAKE_PROJECT_VERSION = ${CMAKE_PROJECT_VERSION}")
+set(PATCH_VERSION "2" CACHE INTERNAL "Patch version")
+set(PROJECT_VESRION 0.0.${PATCH_VERSION})
+
+project(helloworld VERSION ${PROJECT_VESRION})
 
 add_executable(helloworld_cli main.cpp)
 
