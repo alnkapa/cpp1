@@ -1,5 +1,7 @@
 #!bin/bash
 
+# apt install libgtest-dev
+
 mkdir -p build
 cd build
 rm -rf *
