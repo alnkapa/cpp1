@@ -26,6 +26,8 @@ FetchContent_MakeAvailable(googletest)
 add_executable(test_version test_version.cpp)
 target_include_directories(test_version PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(test_version gtest_main)
+enable_testing()
+add_test(test_version test_version)
 
 install(
     TARGETS helloworld_cli
