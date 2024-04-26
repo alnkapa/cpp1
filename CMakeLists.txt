@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.25.1)
 
-project(Task VERSION 0.0.1)
-# VERSION <major>[.<minor>[.<patch>[.<tweak>]
+project(helloworld VERSION 0.0.1)
 
 add_executable(helloworld_cli main.cpp)
 
@@ -12,3 +11,22 @@ target_include_directories(
     PRIVATE
     ${CMAKE_CURRENT_BINARY_DIR}
 )
+install(
+    TARGETS helloworld_cli
+    COMPONENT ${PROJECT_NAME}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} # bin
+)
+
+SET(CPACK_GENERATOR "DEB")
+SET(CPACK_DEBIAN_PACKAGE_NAME ${PROJECT_NAME}) 
+SET(CPACK_DEBIAN_PACKAGE_VERSION ${PROJECT_VERSION})
+IF(${CMAKE_SYSTEM_PROCESSOR} MATCHES "x86_64")
+    SET(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64") 
+ELSE()
+    message(FATAL_ERROR "Unknown System Architecture: ${CMAKE_SYSTEM_PROCESSOR}")
+ENDIF()
+SET(CPACK_DEBIAN_PACKAGE_DEPENDS "No") 
+SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "MAINTAINER") 
+SET(CPACK_DEBIAN_PACKAGE_DESCRIPTION "home work 1") 
+
+INCLUDE(CPack)
