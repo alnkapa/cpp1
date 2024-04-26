@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.25.1)
 
 project(helloworld VERSION 0.0.1)
+message("CMAKE_PROJECT_VERSION = ${CMAKE_PROJECT_VERSION}")
 
 add_executable(helloworld_cli main.cpp)
 
@@ -24,6 +25,12 @@ FetchContent_MakeAvailable(googletest)
 
 # Now simply link against gtest or gtest_main as needed. Eg
 add_executable(test_version test_version.cpp)
+
+set_target_properties(test_version PROPERTIES
+    CXX_STANDARD 14
+    CXX_STANDARD_REQUIRED ON
+)
+
 target_include_directories(test_version PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(test_version gtest_main)
 enable_testing()
@@ -36,15 +43,11 @@ install(
 )
 
 SET(CPACK_GENERATOR "DEB")
-SET(CPACK_DEBIAN_PACKAGE_NAME ${PROJECT_NAME}) 
-SET(CPACK_DEBIAN_PACKAGE_VERSION ${PROJECT_VERSION})
-IF(${CMAKE_SYSTEM_PROCESSOR} MATCHES "x86_64")
-    SET(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64") 
-ELSE()
-    message(FATAL_ERROR "Unknown System Architecture: ${CMAKE_SYSTEM_PROCESSOR}")
-ENDIF()
-SET(CPACK_DEBIAN_PACKAGE_DEPENDS "No") 
-SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "MAINTAINER") 
-SET(CPACK_DEBIAN_PACKAGE_DESCRIPTION "home work 1") 
-
+SET(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR}) 
+SET(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR}) 
+SET(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH}) 
+SET(CPACK_STRIP_FILES "TRUE")
+SET(CPACK_PACKAGE_NAME ${CMAKE_PROJECT_NAME})
+SET(CPACK_PACKAGE_CONTACT "my")
 INCLUDE(CPack)
+

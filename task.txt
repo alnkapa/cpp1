@@ -34,3 +34,11 @@ Hello, World!
 test_version.cpp, но сделать его с использованием GoogleTest framework. GoogleTest при этом либо
 подключить к репозиторию в качестве submodule и собрать вместе с тестом, либо установить на
 этапе подготовке к сборке через Github Actions.
+
+Добрый день. 
+Подскажите как исключить из deb пакета файлы от GoogleTest
+include/gtest/gtest_pred_impl.h
+include/gtest/gtest_prod.h
+include/gtest/gtest-death-test.h
+и т.д. 
+

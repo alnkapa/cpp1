@@ -1,11 +1,9 @@
-#!bin/bash
+#!/bin/bash
 
-# apt install libgtest-dev
-
-mkdir -p build
-cd build
-rm -rf *
-cmake .. -DCMAKE_INSTALL_PREFIX=~
+# mkdir -p build
+#cd build
+# rm -rf *
+cmake .. -DCMAKE_PROJECT_VERSION_PATCH=2 -DCMAKE_INSTALL_PREFIX=~
 cmake --build .
 cmake --build . --target=install
 cmake --build . --target=test
